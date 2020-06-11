@@ -27,12 +27,12 @@ public class MealsUtil {
                 new Meal(LocalDateTime.of(2020, Month.JANUARY, 31, 20, 0), "Ужин", 410)
         );
 
-    public static List<MealTo> geTos(List<MealTo> mealTos, int caloriesPerDay){
-        return
+    public static List<MealTo> getTos(List<Meal> mealTos, int caloriesPerDay){
+        return filteredByPredicate(mealTos, caloriesPerDay, meal -> true);
     }
 
 
-    public static List<MealTo> filteredByPredicate(List<Meal> meals, LocalTime startTime, LocalTime endTime, int caloriesPerDay, Predicate<Meal> filter) {
+    public static List<MealTo> filteredByPredicate(List<Meal> meals, int caloriesPerDay, Predicate<Meal> filter) {
         Map<LocalDate, Integer> caloriesSumByDate = meals.stream()
                 .collect(Collectors.toMap(Meal::getDate, Meal::getCalories, Integer::sum)
                 );
