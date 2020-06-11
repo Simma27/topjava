@@ -6,8 +6,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://topjava.javawebinar.ru/functions" %>
 <html>
 <head>
     <title>Meals</title>
@@ -27,9 +28,7 @@
         <tbody>
         <c:forEach items="${meals}" var="meal">
             <tr style="color: ${meal.isExcess() ? 'red' : 'green'}">
-            <td><fmt:parseDate value="${meal.getDateTime()}" pattern="yyyy-MM-dd'T'HH:mm"
-                               var="parseDateTime" type="both"></fmt:parseDate>
-                <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${parseDateTime}"></fmt:formatDate></td>
+            <td></td>
             <td><c:out value="${meal.getDescription()}"></c:out></td>
             <td><c:out value="${meal.getCalories()}"></c:out></td>
             </tr>
