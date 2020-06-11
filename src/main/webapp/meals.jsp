@@ -8,7 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://topjava.javawebinar.ru/functions" %>
+<%--<%@ taglib prefix="fn" uri="http://topjava.javawebinar.ru/functions"%>--%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <html>
 <head>
     <title>Meals</title>
@@ -28,7 +29,7 @@
         <tbody>
         <c:forEach items="${meals}" var="meal">
             <tr style="color: ${meal.isExcess() ? 'red' : 'green'}">
-            <td></td>
+            <td>${fn:formatDateTime(meal.dateTime)}</td>
             <td><c:out value="${meal.getDescription()}"></c:out></td>
             <td><c:out value="${meal.getCalories()}"></c:out></td>
             </tr>
