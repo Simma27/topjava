@@ -28,11 +28,15 @@ public class MealsUtil {
         );
 
     public static List<MealTo> getTos(List<Meal> mealTos, int caloriesPerDay){
-        return filteredByPredicate(mealTos, caloriesPerDay, meal -> true);
+        return filterByPredicate(mealTos, caloriesPerDay, meal -> true);
+    }
+
+    public static List<MealTo> getFilteredTos(List<Meal> meals, int caloriesPerDay, LocalTime startTime, LocalTime endTime) {
+        return filterByPredicate(meals, caloriesPerDay, meal -> TimeUtil.isBetweenHalfOpen(meal.getTime(), startTime, endTime));
     }
 
 
-    public static List<MealTo> filteredByPredicate(List<Meal> meals, int caloriesPerDay, Predicate<Meal> filter) {
+    public static List<MealTo> filterByPredicate(List<Meal> meals, int caloriesPerDay, Predicate<Meal> filter) {
         Map<LocalDate, Integer> caloriesSumByDate = meals.stream()
                 .collect(Collectors.toMap(Meal::getDate, Meal::getCalories, Integer::sum)
                 );

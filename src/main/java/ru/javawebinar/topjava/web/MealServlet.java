@@ -1,6 +1,7 @@
 package ru.javawebinar.topjava.web;
 
 import org.slf4j.Logger;
+import ru.javawebinar.topjava.util.MealsUtil;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -17,8 +18,7 @@ public class MealServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         log.info("allGet");
-        req.setAttribute("meals", "example");
+        req.setAttribute("meals", MealsUtil.getTos(MealsUtil.MEALS,MealsUtil.DEFAULT_CALORIES_PER_DAY));
         req.getRequestDispatcher("/meals.jsp").forward(req, resp);
-        //        request.getRequestDispatcher("/users.jsp").forward(request, response);
     }
 }

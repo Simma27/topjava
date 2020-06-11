@@ -10,12 +10,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <html>
 <head>
-    <title>Title</title>
+    <title>Meals</title>
 </head>
 <body>
-    <h3><a href="index.html">Home</a> </h3>
-    </hr>
-    <h2>Meals</h2>
+<h3><a href="index.html">Home</a></h3>
+<hr>
+<h2>Meals</h2>
     <table border="1" cellpadding="8" cellspacing="0">
 <thead>
 <tr>
@@ -24,14 +24,17 @@
     <td>Calories</td>
 </tr>
 </thead>
-        <tr style="background-color: ${meal.isExcess() ? 'red' : 'green'}"></tr>
+        <tbody>
         <c:forEach items="${meals}" var="meal">
-            <td><fmt:parseDate value="${meal.getDateTime()}" pattern="dd-MMM-yyyy'T'HH:mm" var="parseDate" type="both">
-                <fmt:formatDate value="parseDate" pattern="dd.MM.yyyy HH:mm"></fmt:formatDate>
-            </fmt:parseDate></td>
-            <td>${meal.getDescription()}</td>
-            <td>${meal.getCalories()}</td>
+            <tr style="color: ${meal.isExcess() ? 'red' : 'green'}">
+            <td><fmt:parseDate value="${meal.getDateTime()}" pattern="yyyy-MM-dd'T'HH:mm"
+                               var="parseDateTime" type="both"></fmt:parseDate>
+                <fmt:formatDate pattern="dd.MM.yyyy HH:mm" value="${parseDateTime}"></fmt:formatDate></td>
+            <td><c:out value="${meal.getDescription()}"></c:out></td>
+            <td><c:out value="${meal.getCalories()}"></c:out></td>
+            </tr>
         </c:forEach>
+        </tbody>
     </table>
 </body>
 </html>
