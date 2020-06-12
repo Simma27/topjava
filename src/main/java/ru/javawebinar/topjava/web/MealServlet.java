@@ -61,7 +61,7 @@ public class MealServlet extends HttpServlet {
                         new Meal(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES), "",1000) :
                         repository.get(getId(req));
                 req.setAttribute("meal", meal);
-                req.getRequestDispatcher("/meals.jsp").forward(req, resp);
+                req.getRequestDispatcher("/mealForm.jsp").forward(req, resp);
                 break;
             case "all":
             default:
