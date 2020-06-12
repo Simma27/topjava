@@ -26,8 +26,8 @@ public class MealsUtil {
                 new Meal( LocalDateTime.of(2020, Month.JANUARY, 31, 20, 0), "Ужин", 410)
         );
 
-    public static List<MealTo> getTos(List<Meal> mealTos, int caloriesPerDay){
-        return filterByPredicate(mealTos, caloriesPerDay, meal -> true);
+    public static List<MealTo> getTos(List<Meal> meals, int caloriesPerDay){
+        return filterByPredicate(meals, caloriesPerDay, meal -> true);
     }
 
     public static List<MealTo> getFilteredTos(List<Meal> meals, int caloriesPerDay, LocalTime startTime, LocalTime endTime) {

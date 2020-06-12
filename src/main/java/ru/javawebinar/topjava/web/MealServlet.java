@@ -21,6 +21,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 public class MealServlet extends HttpServlet {
     private static final Logger log = getLogger(MealServlet.class);
+
     private MealRepository repository;
 
     @Override
@@ -35,7 +36,7 @@ public class MealServlet extends HttpServlet {
         String id = req.getParameter("id");
 
         Meal meal = new Meal(id.isEmpty() ? null : Integer.valueOf(id),
-                LocalDateTime.parse(req.getParameter("datatime")),
+                LocalDateTime.parse(req.getParameter("dataTime")),
                 req.getParameter("description"),
                 Integer.parseInt(req.getParameter("calories")));
         log.info(meal.isNew() ? "Create{}" : "Update {}", meal);
