@@ -15,11 +15,11 @@
     <title>Meals</title>
 </head>
 <body>
-<section>
+<br>
 <h3><a href="index.html">Home</a></h3>
 <hr>
 <h2>Meals</h2>
-    <a href="meals?action=create"
+    <a href="meals?action=create">AddMeal</a>
     <table border="1" cellpadding="8" cellspacing="0">
 <thead>
 <tr>
@@ -40,6 +40,8 @@
             </td>
             <td><c:out value="${meal.description}"></c:out></td>
             <td><c:out value="${meal.calories}"></c:out></td>
+            <td><a href="meals?action=update"></a> </td>
+            <td><a href="meals?action=delete"></a> </td>
             </tr>
         </c:forEach>
         </tbody>
