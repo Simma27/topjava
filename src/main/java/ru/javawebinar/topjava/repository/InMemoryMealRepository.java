@@ -20,7 +20,7 @@ public class InMemoryMealRepository implements MealRepository {
     public Meal save(Meal meal) {
         if(meal.isNew()){
             meal.setId(counter.incrementAndGet());
-            repository.put(meal.getId(),meal);
+            repository.put(meal.getId(), meal);
             return meal;
         }
         return repository.computeIfPresent(meal.getId(),(id, oldMeal)-> meal);
