@@ -35,28 +35,29 @@ public class MealServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         String id = req.getParameter("id");
 
-        Meal meal = new Meal(id.isEmpty() ? null : Integer.valueOf(id));
+        Meal meal = new Meal(id.isEmpty() ? null : Integer.valueOf(id),
+                LocalDateTime.parse(req.getParameter("datatime")),
+                req.getParameter("description"),
+                Integer.parseInt(req.getParameter("calories")));
+        log.info(meal.isNew() ? "Create{}" : "Update {}", meal);
+        repository.save(meal);
+        resp.sendRedirect("meals");
 
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String action = req.getParameter("action");
+
+        switch (action == null ? "all" : action){
+            case "delete":
+                int id = getId(req);
+        }
         log.info("allGet");
         req.setAttribute("meals", MealsUtil.getTos(MealsUtil.MEALS,MealsUtil.DEFAULT_CALORIES_PER_DAY));
         req.getRequestDispatcher("/meals.jsp").forward(req, resp);
     }
 }
-//        Meal meal = new Meal(id.isEmpty() ? null : Integer.valueOf(id),
-//                LocalDateTime.parse(request.getParameter("dateTime")),
-//                request.getParameter("description"),
-//                Integer.parseInt(request.getParameter("calories")));
-//
-//        log.info(meal.isNew() ? "Create {}" : "Update {}", meal);
-//        repository.save(meal);
-//        response.sendRedirect("meals");
-//    }
-//
-//    @Override
 //    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        String action = request.getParameter("action");
 //
