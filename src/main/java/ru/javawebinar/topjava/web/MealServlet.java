@@ -12,7 +12,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -52,42 +51,28 @@ public class MealServlet extends HttpServlet {
         switch (action == null ? "all" : action){
             case "delete":
                 int id = getId(req);
+                log.info("Delete {}", id);
+                repository.delete(id);
+                resp.sendRedirect("meals");
+                break;
+            case "create":
+            case "update":
+                final Meal meal = "create".equals(action) ?
+                        new Meal(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES), "",1000) :
+                        repository.get(getId(req));
+                req.setAttribute("meal", meal);
+                req.getRequestDispatcher("/meals.jsp").forward(req, resp);
+                break;
+            case "all":
+            default:
+                log.info("allGet");
+                req.setAttribute("meals", MealsUtil.getTos(MealsUtil.MEALS,MealsUtil.DEFAULT_CALORIES_PER_DAY));
+                req.getRequestDispatcher("/meals.jsp").forward(req, resp);
+                break;
         }
-        log.info("allGet");
-        req.setAttribute("meals", MealsUtil.getTos(MealsUtil.MEALS,MealsUtil.DEFAULT_CALORIES_PER_DAY));
-        req.getRequestDispatcher("/meals.jsp").forward(req, resp);
+    }
+    private int getId(HttpServletRequest request){
+        String paramId = Objects.requireNonNull(request.getParameter("id"));
+        return Integer.parseInt(paramId);
     }
 }
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        String action = request.getParameter("action");
-//
-//        switch (action == null ? "all" : action) {
-//            case "delete":
-//                int id = getId(request);
-//                log.info("Delete {}", id);
-//                repository.delete(id);
-//                response.sendRedirect("meals");
-//                break;
-//            case "create":
-//            case "update":
-//                final Meal meal = "create".equals(action) ?
-//                        new Meal(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES), "", 1000) :
-//                        repository.get(getId(request));
-//                request.setAttribute("meal", meal);
-//                request.getRequestDispatcher("/mealForm.jsp").forward(request, response);
-//                break;
-//            case "all":
-//            default:
-//                log.info("getAll");
-//                request.setAttribute("meals",
-//                        MealsUtil.getTos(repository.getAll(), MealsUtil.DEFAULT_CALORIES_PER_DAY));
-//                request.getRequestDispatcher("/meals.jsp").forward(request, response);
-//                break;
-//        }
-//    }
-//
-//    private int getId(HttpServletRequest request) {
-//        String paramId = Objects.requireNonNull(request.getParameter("id"));
-//        return Integer.parseInt(paramId);
-//    }
-//}
