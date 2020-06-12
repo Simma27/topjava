@@ -66,8 +66,8 @@ public class MealServlet extends HttpServlet {
                 break;
             case "all":
             default:
-                log.info("allGet");
-                req.setAttribute("meals", MealsUtil.getTos(MealsUtil.MEALS,MealsUtil.DEFAULT_CALORIES_PER_DAY));
+                log.info("getAll");
+                req.setAttribute("meals", MealsUtil.getTos(repository.getAll(),MealsUtil.DEFAULT_CALORIES_PER_DAY));
                 req.getRequestDispatcher("/meals.jsp").forward(req, resp);
                 break;
         }
@@ -77,3 +77,17 @@ public class MealServlet extends HttpServlet {
         return Integer.parseInt(paramId);
     }
 }
+
+//                log.info("getAll");
+//                request.setAttribute("meals",
+//                        MealsUtil.getTos(repository.getAll(), MealsUtil.DEFAULT_CALORIES_PER_DAY));
+//                request.getRequestDispatcher("/meals.jsp").forward(request, response);
+//                break;
+//        }
+//    }
+//
+//    private int getId(HttpServletRequest request) {
+//        String paramId = Objects.requireNonNull(request.getParameter("id"));
+//        return Integer.parseInt(paramId);
+//    }
+//}
