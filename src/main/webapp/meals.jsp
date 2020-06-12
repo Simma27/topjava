@@ -20,12 +20,15 @@
 <hr>
 <h2>Meals</h2>
     <a href="meals?action=create">AddMeal</a>
+    <br><br>
     <table border="1" cellpadding="8" cellspacing="0">
 <thead>
 <tr>
     <td>Date</td>
     <td>Description</td>
     <td>Calories</td>
+    <td>Update</td>
+    <td>Delete</td>
 </tr>
 </thead>
         <tbody>
