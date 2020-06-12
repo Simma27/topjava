@@ -40,8 +40,8 @@
             </td>
             <td><c:out value="${meal.description}"></c:out></td>
             <td><c:out value="${meal.calories}"></c:out></td>
-            <td><a href="meals?action=update"></a> </td>
-            <td><a href="meals?action=delete"></a> </td>
+            <td><a href="meals?action=update&id=${meal.id}">Update</a> </td>
+            <td><a href="meals?action=delete&id=${meal.id}">Delete</a> </td>
             </tr>
         </c:forEach>
         </tbody>
