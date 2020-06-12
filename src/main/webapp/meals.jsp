@@ -19,6 +19,7 @@
 <h3><a href="index.html">Home</a></h3>
 <hr>
 <h2>Meals</h2>
+    <a href="meals?action=create"
     <table border="1" cellpadding="8" cellspacing="0">
 <thead>
 <tr>
