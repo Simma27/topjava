@@ -27,14 +27,14 @@
     <td>Date</td>
     <td>Description</td>
     <td>Calories</td>
-    <td>Update</td>
-    <td>Delete</td>
+    <td></td>
+    <td></td>
 </tr>
 </thead>
         <tbody>
         <c:forEach items="${meals}" var="meal">
             <jsp:useBean id="meal" type="ru.javawebinar.topjava.model.MealTo"/>
-            <tr style="color: ${meal.excess ? 'red' : 'green'}">
+            <tr style="background-color: ${meal.excess ? 'red' : 'green'}">
             <td>
                     <%--${meal.dateTime.toLocalDate()} ${meal.dateTime.toLocalTime()}--%>
                     <%--<%=TimeUtil.toString(meal.getDateTime())%>--%>

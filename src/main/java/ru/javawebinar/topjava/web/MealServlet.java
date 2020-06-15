@@ -36,7 +36,7 @@ public class MealServlet extends HttpServlet {
         String id = req.getParameter("id");
 
         Meal meal = new Meal(id.isEmpty() ? null : Integer.valueOf(id),
-                LocalDateTime.parse(req.getParameter("dataTime")),
+                LocalDateTime.parse(req.getParameter("dateTime")),
                 req.getParameter("description"),
                 Integer.parseInt(req.getParameter("calories")));
         log.info(meal.isNew() ? "Create{}" : "Update {}", meal);
